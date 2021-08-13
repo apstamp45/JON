@@ -14,11 +14,7 @@ package com.apstamp45.JON;
 public class Main {
 	public static void main(String[] args) {
 		Node dog = new Node("dog");
-		dog.addChildren(new Value<String>("name", "Doug")
-				, new Node("looks"
-					, new Value<String>("hairColor", "white")
-					, new Value<String>("eyeColor", "blue"))
-				, new Value<Double>("age", new Double(0.5)));
+		dog.addChildren(new Value<String>("name", "Doug"));
 		Value<String> name = (Value<String>) dog.getChild("name");
 		System.out.print(name.getValue());
 	}

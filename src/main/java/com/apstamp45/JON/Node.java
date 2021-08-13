@@ -41,22 +41,29 @@ public class Node {
 	public Node(String name, Node... children) {
 		this.children = new ArrayList<Node>();
 		this.name = name;
-		this.addChildren(children);
+		if (children.length > 0) {
+			this.addChildren(children);
+		} 
 	}
 
 	/**
 	 * Adds given Nodes to this.children.
+	 * @children The children to add.
 	 */
 	public void addChildren(Node... children) {
 		for (Node child: children) {
-			for (Node presentChild: this.children) {
-				if (presentChild.name
-						== child.getName()) {
-					throw new IllegalArgumentException("That child already exists.");
-				} else {
-					child.parent = this;
-					this.children.add(child);
+			if (this.children.size() > 0) {
+				for (Node presentChild: this.children) {
+					if (presentChild.getName().equals(child.getName())) {
+						throw new IllegalArgumentException("That child already exists.");
+					} else {
+						child.parent = this;
+						this.children.add(child);
+					}
 				}
+			} else {
+				child.parent = this;
+				this.children.add(child);
 			}
 		}
 	}
@@ -71,13 +78,13 @@ public class Node {
 	 */
 	public Node getChild(String name) {
 		for (Node child: children) {
-			if (child.getName() == name) {
+			if (child.getName().equals(name)) {
 				return child;
 			} 
 		} 
-		throw new IllegalArgumentException("Node " + this.name
-			       	+ "does not contain a child with the name "
-			       	+ name + ".");
+		throw new IllegalArgumentException("Node \"" + this.name
+			       	+ "\" does not contain a child with the name \""
+			       	+ name + "\".");
 	}
 
 	/**
