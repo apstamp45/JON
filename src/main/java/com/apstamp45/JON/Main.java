@@ -1,17 +1,25 @@
-/**
+/*
  * This project attempts to create a
  * JavaScript-like object layout in
  * the Java language. It is simply
  * a fun practice project.
- * @author apstamp45
  */
 
 package com.apstamp45.JON;
+
 /**
  * Main class.
+ * @author apstamp45
  */
 public class Main {
 	public static void main(String[] args) {
-		System.out.println("Hi");
+		Node dog = new Node("dog");
+		dog.addChildren(new Value<String>("name", "Doug")
+				, new Node("looks"
+					, new Value<String>("hairColor", "white")
+					, new Value<String>("eyeColor", "blue"))
+				, new Value<Double>("age", new Double(0.5)));
+		Value<String> name = (Value<String>) dog.getChild("name");
+		System.out.print(name.getValue());
 	}
 }
