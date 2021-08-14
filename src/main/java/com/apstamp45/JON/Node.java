@@ -42,7 +42,7 @@ public class Node {
 		this.children = new ArrayList<Node>();
 		this.name = name;
 		if (children.length > 0) {
-			this.addChildren(children);
+			addChildren(children);
 		} 
 	}
 
@@ -55,7 +55,7 @@ public class Node {
 			if (this.children.size() > 0) {
 				for (Node presentChild: this.children) {
 					if (presentChild.getName().equals(child.getName())) {
-						throw new IllegalArgumentException("That child already exists.");
+						throw new IllegalArgumentException("The Node \"" + child.getName() + "\" already exists in \"" + this.getName() + "\".");
 					} else {
 						child.parent = this;
 						this.children.add(child);

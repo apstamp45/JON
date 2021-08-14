@@ -15,7 +15,12 @@ public class Main {
 	public static void main(String[] args) {
 		Node dog = new Node("dog");
 		dog.addChildren(new Value<String>("name", "Doug"));
+		try {
+			dog.addChildren(new Node("name"));
+		} catch (IllegalArgumentException e) {
+			System.out.println("Whatever");
+		}
 		Value<String> name = (Value<String>) dog.getChild("name");
-		System.out.print(name.getValue());
+		System.out.println(name.getValue());
 	}
 }
